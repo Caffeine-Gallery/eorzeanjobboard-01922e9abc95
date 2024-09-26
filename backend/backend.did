@@ -1,13 +1,18 @@
 type CharacterId = nat;
 type Character = 
  record {
+   gender: text;
    id: CharacterId;
    job: text;
    name: text;
+   race: text;
+   startingCity: text;
  };
 service : {
-  addCharacter: (text, text) -> (CharacterId);
+  addCharacter: (text, text, text, text, text) -> (CharacterId);
   getAllCharacters: () -> (vec Character) query;
   getAllJobs: () -> (vec text) query;
+  getAllRaces: () -> (vec text) query;
+  getAllStartingCities: () -> (vec text) query;
   updateCharacterJob: (CharacterId, text) -> (bool);
 }

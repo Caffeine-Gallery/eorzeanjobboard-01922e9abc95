@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const addCharacterForm = document.getElementById('add-character-form');
     const characterNameInput = document.getElementById('character-name');
     const characterJobSelect = document.getElementById('character-job');
+    const characterRaceSelect = document.getElementById('character-race');
+    const characterGenderSelect = document.getElementById('character-gender');
+    const characterStartingCitySelect = document.getElementById('character-starting-city');
 
     // Fetch and display all jobs
     const jobs = await backend.getAllJobs();
@@ -20,6 +23,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         characterJobSelect.appendChild(option);
     });
 
+    // Fetch and populate races
+    const races = await backend.getAllRaces();
+    races.forEach(race => {
+        const option = document.createElement('option');
+        option.value = race;
+        option.textContent = race;
+        characterRaceSelect.appendChild(option);
+    });
+
+    // Fetch and populate starting cities
+    const startingCities = await backend.getAllStartingCities();
+    startingCities.forEach(city => {
+        const option = document.createElement('option');
+        option.value = city;
+        option.textContent = city;
+        characterStartingCitySelect.appendChild(option);
+    });
+
     // Function to fetch and display all characters
     async function displayCharacters() {
         const characters = await backend.getAllCharacters();
@@ -27,7 +48,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         characters.forEach(character => {
             const li = document.createElement('li');
             li.innerHTML = `
-                <strong>${character.name}</strong> - ${character.job}
+                <strong>${character.name}</strong> - ${character.job}<br>
+                Race: ${character.race}, Gender: ${character.gender}, Starting City: ${character.startingCity}
                 <button class="update-job" data-id="${character.id}">Update Job</button>
             `;
             characterList.appendChild(li);
@@ -54,10 +76,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         e.preventDefault();
         const name = characterNameInput.value;
         const job = characterJobSelect.value;
-        if (name && job) {
-            await backend.addCharacter(name, job);
+        const race = characterRaceSelect.value;
+        const gender = characterGenderSelect.value;
+        const startingCity = characterStartingCitySelect.value;
+        if (name && job && race && gender && startingCity) {
+            await backend.addCharacter(name, job, race, gender, startingCity);
             characterNameInput.value = '';
             characterJobSelect.value = '';
+            characterRaceSelect.value = '';
+            characterGenderSelect.value = '';
+            characterStartingCitySelect.value = '';
             displayCharacters();
         }
     });

@@ -17,6 +17,9 @@ actor {
     id: CharacterId;
     name: Text;
     job: Text;
+    race: Text;
+    gender: Text;
+    startingCity: Text;
   };
 
   // Store characters
@@ -32,13 +35,27 @@ actor {
     "Black Mage", "Summoner", "Red Mage", "Blue Mage"
   ];
 
+  // List of races in Final Fantasy 14
+  let allRaces : [Text] = [
+    "Hyur", "Elezen", "Lalafell", "Miqo'te", "Roegadyn",
+    "Au Ra", "Hrothgar", "Viera"
+  ];
+
+  // List of starting cities in Final Fantasy 14
+  let allStartingCities : [Text] = [
+    "Limsa Lominsa", "Gridania", "Ul'dah"
+  ];
+
   // Add a new character
-  public func addCharacter(name: Text, job: Text) : async CharacterId {
+  public func addCharacter(name: Text, job: Text, race: Text, gender: Text, startingCity: Text) : async CharacterId {
     let id = nextCharacterId;
     let character : Character = {
       id = id;
       name = name;
       job = job;
+      race = race;
+      gender = gender;
+      startingCity = startingCity;
     };
     characters.put(id, character);
     nextCharacterId += 1;
@@ -59,6 +76,9 @@ actor {
           id = character.id;
           name = character.name;
           job = newJob;
+          race = character.race;
+          gender = character.gender;
+          startingCity = character.startingCity;
         };
         characters.put(id, updatedCharacter);
         true
@@ -69,5 +89,15 @@ actor {
   // Get all jobs
   public query func getAllJobs() : async [Text] {
     allJobs
+  };
+
+  // Get all races
+  public query func getAllRaces() : async [Text] {
+    allRaces
+  };
+
+  // Get all starting cities
+  public query func getAllStartingCities() : async [Text] {
+    allStartingCities
   };
 }
