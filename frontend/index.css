@@ -3,16 +3,21 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
+    background-image: url('https://example.com/ffxiv-background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 #app {
     display: flex;
     width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 aside {
     width: 300px;
-    background-color: #f0f0f0;
+    background-color: rgba(240, 240, 240, 0.9);
     padding: 20px;
     overflow-y: auto;
     height: 100vh;
@@ -39,6 +44,9 @@ li {
 
 form {
     margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 5px;
 }
 
 input, select, button {
@@ -59,7 +67,7 @@ button:hover {
 }
 
 #ff-hero {
-    background-color: #e0e0e0;
+    background-color: rgba(224, 224, 224, 0.9);
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -68,4 +76,15 @@ button:hover {
 #ff-hero h3 {
     margin-top: 0;
     color: #333;
+}
+
+h1, h2 {
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+#character-list {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 5px;
 }
