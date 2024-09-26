@@ -27,11 +27,16 @@ actor {
     description: Text;
   };
 
+  type Hero = {
+    name: Text;
+    description: Text;
+  };
+
   // Store characters
   stable var nextCharacterId : CharacterId = 0;
   let characters = HashMap.HashMap<CharacterId, Character>(0, Nat.equal, Nat.hash);
 
-  // List of all jobs in Final Fantasy 14 with descriptions
+  // List of all jobs in Final Fantasy XIV with descriptions
   let allJobs : [Job] = [
     { name = "Paladin"; description = "A tank job that uses sword and shield." },
     { name = "Warrior"; description = "A tank job that wields a great axe." },
@@ -55,16 +60,22 @@ actor {
     { name = "Blue Mage"; description = "A limited job that learns monster abilities." }
   ];
 
-  // List of races in Final Fantasy 14
+  // List of races in Final Fantasy XIV
   let allRaces : [Text] = [
     "Hyur", "Elezen", "Lalafell", "Miqo'te", "Roegadyn",
     "Au Ra", "Hrothgar", "Viera"
   ];
 
-  // List of starting cities in Final Fantasy 14
+  // List of starting cities in Final Fantasy XIV
   let allStartingCities : [Text] = [
     "Limsa Lominsa", "Gridania", "Ul'dah"
   ];
+
+  // Final Fantasy hero
+  let ffHero : Hero = {
+    name = "Warrior of Light";
+    description = "The main protagonist of Final Fantasy XIV, also known as the Warrior of Light, is a customizable player character who serves as the primary hero in the game's story."
+  };
 
   // Add a new character
   public func addCharacter(name: Text, job: Text, race: Text, gender: Text, startingCity: Text) : async CharacterId {
@@ -119,5 +130,10 @@ actor {
   // Get all starting cities
   public query func getAllStartingCities() : async [Text] {
     allStartingCities
+  };
+
+  // Get the Final Fantasy hero
+  public query func getFFHero() : async Hero {
+    ffHero
   };
 }

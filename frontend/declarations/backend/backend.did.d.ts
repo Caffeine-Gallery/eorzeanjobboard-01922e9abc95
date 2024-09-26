@@ -11,6 +11,7 @@ export interface Character {
   'gender' : string,
 }
 export type CharacterId = bigint;
+export interface Hero { 'name' : string, 'description' : string }
 export interface Job { 'name' : string, 'description' : string }
 export interface _SERVICE {
   'addCharacter' : ActorMethod<
@@ -21,6 +22,7 @@ export interface _SERVICE {
   'getAllJobs' : ActorMethod<[], Array<Job>>,
   'getAllRaces' : ActorMethod<[], Array<string>>,
   'getAllStartingCities' : ActorMethod<[], Array<string>>,
+  'getFFHero' : ActorMethod<[], Hero>,
   'updateCharacterJob' : ActorMethod<[CharacterId, string], boolean>,
 }
 export declare const idlFactory: IDL.InterfaceFactory;

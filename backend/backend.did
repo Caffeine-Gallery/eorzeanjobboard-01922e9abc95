@@ -3,6 +3,11 @@ type Job =
    description: text;
    name: text;
  };
+type Hero = 
+ record {
+   description: text;
+   name: text;
+ };
 type CharacterId = nat;
 type Character = 
  record {
@@ -19,5 +24,6 @@ service : {
   getAllJobs: () -> (vec Job) query;
   getAllRaces: () -> (vec text) query;
   getAllStartingCities: () -> (vec text) query;
+  getFFHero: () -> (Hero) query;
   updateCharacterJob: (CharacterId, text) -> (bool);
 }

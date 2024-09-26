@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const characterRaceSelect = document.getElementById('character-race');
     const characterGenderSelect = document.getElementById('character-gender');
     const characterStartingCitySelect = document.getElementById('character-starting-city');
+    const ffHeroDiv = document.getElementById('ff-hero');
 
     // Fetch and display all jobs with descriptions
     const jobs = await backend.getAllJobs();
@@ -40,6 +41,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         option.textContent = city;
         characterStartingCitySelect.appendChild(option);
     });
+
+    // Fetch and display Final Fantasy hero
+    const ffHero = await backend.getFFHero();
+    ffHeroDiv.innerHTML = `
+        <h3>Featured Hero: ${ffHero.name}</h3>
+        <p>${ffHero.description}</p>
+    `;
 
     // Function to fetch and display all characters
     async function displayCharacters() {
