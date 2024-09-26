@@ -8,6 +8,7 @@ export const idlFactory = ({ IDL }) => {
     'race' : IDL.Text,
     'gender' : IDL.Text,
   });
+  const Job = IDL.Record({ 'name' : IDL.Text, 'description' : IDL.Text });
   return IDL.Service({
     'addCharacter' : IDL.Func(
         [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
@@ -15,7 +16,7 @@ export const idlFactory = ({ IDL }) => {
         [],
       ),
     'getAllCharacters' : IDL.Func([], [IDL.Vec(Character)], ['query']),
-    'getAllJobs' : IDL.Func([], [IDL.Vec(IDL.Text)], ['query']),
+    'getAllJobs' : IDL.Func([], [IDL.Vec(Job)], ['query']),
     'getAllRaces' : IDL.Func([], [IDL.Vec(IDL.Text)], ['query']),
     'getAllStartingCities' : IDL.Func([], [IDL.Vec(IDL.Text)], ['query']),
     'updateCharacterJob' : IDL.Func([CharacterId, IDL.Text], [IDL.Bool], []),

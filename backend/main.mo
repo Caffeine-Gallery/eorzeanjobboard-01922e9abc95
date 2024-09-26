@@ -22,17 +22,37 @@ actor {
     startingCity: Text;
   };
 
+  type Job = {
+    name: Text;
+    description: Text;
+  };
+
   // Store characters
   stable var nextCharacterId : CharacterId = 0;
   let characters = HashMap.HashMap<CharacterId, Character>(0, Nat.equal, Nat.hash);
 
-  // List of all jobs in Final Fantasy 14
-  let allJobs : [Text] = [
-    "Paladin", "Warrior", "Dark Knight", "Gunbreaker",
-    "White Mage", "Scholar", "Astrologian", "Sage",
-    "Monk", "Dragoon", "Ninja", "Samurai", "Reaper",
-    "Bard", "Machinist", "Dancer",
-    "Black Mage", "Summoner", "Red Mage", "Blue Mage"
+  // List of all jobs in Final Fantasy 14 with descriptions
+  let allJobs : [Job] = [
+    { name = "Paladin"; description = "A tank job that uses sword and shield." },
+    { name = "Warrior"; description = "A tank job that wields a great axe." },
+    { name = "Dark Knight"; description = "A tank job that uses a greatsword and dark magic." },
+    { name = "Gunbreaker"; description = "A tank job that uses a gunblade." },
+    { name = "White Mage"; description = "A healer job that uses nature-based magic." },
+    { name = "Scholar"; description = "A healer job that uses a fairy companion and barriers." },
+    { name = "Astrologian"; description = "A healer job that uses star magic and tarot cards." },
+    { name = "Sage"; description = "A healer job that uses magitek nouliths." },
+    { name = "Monk"; description = "A melee DPS job that uses hand-to-hand combat." },
+    { name = "Dragoon"; description = "A melee DPS job that uses a lance and jump attacks." },
+    { name = "Ninja"; description = "A melee DPS job that uses daggers and ninjutsu." },
+    { name = "Samurai"; description = "A melee DPS job that uses a katana." },
+    { name = "Reaper"; description = "A melee DPS job that uses a scythe and void magic." },
+    { name = "Bard"; description = "A ranged physical DPS job that uses a bow and songs." },
+    { name = "Machinist"; description = "A ranged physical DPS job that uses firearms and gadgets." },
+    { name = "Dancer"; description = "A ranged physical DPS job that uses throwing weapons and dances." },
+    { name = "Black Mage"; description = "A magical ranged DPS job that uses destructive magic." },
+    { name = "Summoner"; description = "A magical ranged DPS job that summons primals." },
+    { name = "Red Mage"; description = "A magical ranged DPS job that balances white and black magic." },
+    { name = "Blue Mage"; description = "A limited job that learns monster abilities." }
   ];
 
   // List of races in Final Fantasy 14
@@ -86,8 +106,8 @@ actor {
     }
   };
 
-  // Get all jobs
-  public query func getAllJobs() : async [Text] {
+  // Get all jobs with descriptions
+  public query func getAllJobs() : async [Job] {
     allJobs
   };
 

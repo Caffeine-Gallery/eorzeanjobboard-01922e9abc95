@@ -10,16 +10,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     const characterGenderSelect = document.getElementById('character-gender');
     const characterStartingCitySelect = document.getElementById('character-starting-city');
 
-    // Fetch and display all jobs
+    // Fetch and display all jobs with descriptions
     const jobs = await backend.getAllJobs();
     jobs.forEach(job => {
         const li = document.createElement('li');
-        li.textContent = job;
+        li.innerHTML = `<strong>${job.name}</strong>: ${job.description}`;
         jobList.appendChild(li);
 
         const option = document.createElement('option');
-        option.value = job;
-        option.textContent = job;
+        option.value = job.name;
+        option.textContent = job.name;
         characterJobSelect.appendChild(option);
     });
 

@@ -11,13 +11,14 @@ export interface Character {
   'gender' : string,
 }
 export type CharacterId = bigint;
+export interface Job { 'name' : string, 'description' : string }
 export interface _SERVICE {
   'addCharacter' : ActorMethod<
     [string, string, string, string, string],
     CharacterId
   >,
   'getAllCharacters' : ActorMethod<[], Array<Character>>,
-  'getAllJobs' : ActorMethod<[], Array<string>>,
+  'getAllJobs' : ActorMethod<[], Array<Job>>,
   'getAllRaces' : ActorMethod<[], Array<string>>,
   'getAllStartingCities' : ActorMethod<[], Array<string>>,
   'updateCharacterJob' : ActorMethod<[CharacterId, string], boolean>,
